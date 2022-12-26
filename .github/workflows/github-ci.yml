@@ -23,7 +23,8 @@ jobs:
       - name: yarn build
         run: yarn build
       - name: Upload /build to S3
-        run: aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET_NAME}}/development --recursive
+        run: aws s3 rm s3://${{ secrets.AWS_S3_BUCKET_NAME}}/development --recursive
+        #run: aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET_NAME}}/development --recursive
   Production:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/production' }}
@@ -43,4 +44,5 @@ jobs:
       - name: yarn build
         run: yarn build
       - name: Upload /build to S3
-        run: aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET_NAME}}/production --recursive
+        run: aws s3 rm s3://${{ secrets.AWS_S3_BUCKET_NAME}}/production --recursive
+        #run: aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET_NAME}}/production --recursive
