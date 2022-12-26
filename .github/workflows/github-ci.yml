@@ -1,0 +1,7 @@
+name: Learn Git Action CI
+on: [push]
+jobs:
+  Development:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "test"
