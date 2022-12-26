@@ -1,7 +1,17 @@
 name: Learn Git Action CI
-on: [push]
+on:
+  push:
+    branches:
+    - development
 jobs:
   Development:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "test"
+      - name: Checkout
+        uses: actions/checkout@v2.6.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.5.1
+      - name: Install Yarn
+        run: yarn
+      - name: yarn build
+        run: yarn build
