@@ -27,6 +27,7 @@ jobs:
         run: |
           aws s3 rm s3://${{ secrets.AWS_S3_BUCKET_NAME}}/development --recursive
           aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET_NAME}}/development --recursive
+          aws cloudfront create-invalidation --distribution-id ${{STG_CDN_DISTRIBUTION_ID}} --paths "/*"
   Production:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/production' }}
@@ -49,3 +50,4 @@ jobs:
         run: |
           aws s3 rm s3://${{ secrets.AWS_S3_BUCKET_NAME}}/production --recursive
           aws s3 cp ./build s3://${{ secrets.AWS_S3_BUCKET_NAME}}/production --recursive
+          aws cloudfront create-invalidation --distribution-id ${{PRD_CDN_DISTRIBUTION_ID}} --paths "/*"
