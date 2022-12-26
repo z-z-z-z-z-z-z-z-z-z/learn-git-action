@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - development
+      - production
 jobs:
   Development:
     runs-on: ubuntu-latest
